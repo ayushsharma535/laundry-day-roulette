@@ -63,8 +63,9 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
                   )}
                 </div>
                 <p className="text-xs text-slate-500">
-                  {student.name} • Reg No: {student.regNo} ({student.hostelBlock})
+                  {student.name} • {student.regNo} • {student.hostelBlock}, Room {student.roomNumber}
                 </p>
+                <p className="text-[11px] text-slate-400">{student.assignedKiosk}</p>
               </div>
             </div>
             {role === 'student' && <Check className="w-4 h-4 text-teal-600" />}
@@ -95,7 +96,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
                   )}
                 </div>
                 <p className="text-xs text-slate-500">
-                  {staff.name} • {staff.roleTitle}
+                  {staff.name} • {staff.employeeId} • {staff.assignedKiosk}
                 </p>
               </div>
             </div>

@@ -6,7 +6,7 @@ const STORAGE_KEYS = {
   ORDERS: 'laundrytrack_orders_v1',
   NOTIFICATIONS: 'laundrytrack_notifications_v1',
   ACTIVE_ROLE: 'laundrytrack_active_role_v1',
-  INITIALIZED: 'laundrytrack_seeded_v1'
+  INITIALIZED: 'laundrytrack_seeded_v2'
 };
 
 export const STORAGE_UPDATE_EVENT = 'laundrytrack:storage-update';

@@ -67,7 +67,7 @@ export const createNewOrder = (params: CreateOrderParams): Order => {
     currentStatus: 'Submitted',
     submissionDate: now,
     lastUpdated: now,
-    kioskLocation: params.kioskLocation || 'Central UniMall Hub',
+    kioskLocation: params.kioskLocation || 'UniMall Kiosk',
     statusHistory: [
       {
         status: 'Submitted',
@@ -97,7 +97,7 @@ export const updateOrderStatus = (
   const order = orders[index];
   const now = new Date().toISOString();
 
-  const historyNote = note || getDefaultStatusNote(newStatus, updatedBy);
+  const historyNote = note || getDefaultStatusNote(order, newStatus, updatedBy);
 
   const updatedOrder: Order = {
     ...order,
@@ -121,14 +121,14 @@ export const updateOrderStatus = (
   return updatedOrder;
 };
 
-const getDefaultStatusNote = (status: OrderStatus, staffName: string): string => {
+const getDefaultStatusNote = (order: Order, status: OrderStatus, staffName: string): string => {
   switch (status) {
     case 'Received':
       return `Clothes verified and tagged at counter by ${staffName}.`;
     case 'Washing':
       return `Wash and dry cycle started by ${staffName}.`;
     case 'Ready':
-      return `Packaged & ready for student collection at Central UniMall Hub.`;
+      return `Packaged & ready for student collection at ${order.kioskLocation || 'UniMall Kiosk'}.`;
     case 'Collected':
       return `Handed over to student and verified by ${staffName}.`;
     default:

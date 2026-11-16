@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useOrders } from '../../context/OrderContext';
 import { RoleSwitcherModal } from './RoleSwitcherModal';
+import { getInitials } from '../../types/user';
 import {
   Bell,
   Menu,
@@ -104,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
                 isStudent ? 'bg-navy-900 text-white' : 'bg-teal-600 text-white'
               }`}
             >
-              {isStudent ? 'AV' : 'RK'}
+              {getInitials(isStudent ? student.name : staff.name)}
             </div>
             <div className="text-left hidden md:block">
               <p className="text-xs font-bold text-slate-800 leading-tight">

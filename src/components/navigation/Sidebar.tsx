@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useOrders } from '../../context/OrderContext';
 import type { LucideIcon } from 'lucide-react';
+import { getInitials } from '../../types/user';
 import {
   LayoutDashboard,
   PlusCircle,
@@ -150,7 +151,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 role === 'student' ? 'bg-navy-900 text-white' : 'bg-teal-600 text-white'
               }`}
             >
-              {role === 'student' ? 'AV' : 'RK'}
+              {getInitials(role === 'student' ? student.name : staff.name)}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-bold text-slate-800 truncate">

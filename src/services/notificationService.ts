@@ -36,7 +36,7 @@ export const createNotificationForNewOrder = (order: Order): void => {
     id: `NOTIF-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
     orderId: order.id,
     title: 'Order Submitted Successfully 📝',
-    message: `Your laundry order ${order.id} with ${order.itemCount} items has been placed. Please hand over clothes at the counter.`,
+    message: `${order.studentName}, your laundry order ${order.id} with ${order.itemCount} items has been placed. Drop it off at ${order.kioskLocation || 'UniMall Kiosk'}.`,
     timestamp: new Date().toISOString(),
     read: false,
     type: 'info',
@@ -54,22 +54,22 @@ export const createNotificationForStatusChange = (order: Order, newStatus: Order
   switch (newStatus) {
     case 'Received':
       title = 'Clothes Received at Counter ✅';
-      message = `Your laundry (${order.id}) was checked in and verified by staff. Tagged for cleaning.`;
+      message = `${order.studentName}, your laundry (${order.id}) was checked in and verified by staff.`;
       type = 'info';
       break;
     case 'Washing':
       title = 'Washing Cycle Started 🫧';
-      message = `Your laundry (${order.id}) is now in the washing & hygiene cycle.`;
+      message = `${order.studentName}, your laundry (${order.id}) is now in the washing and hygiene cycle.`;
       type = 'info';
       break;
     case 'Ready':
       title = 'Order Ready for Collection! 🧺';
-      message = `Great news! Order ${order.id} is ironed, packaged and ready for pickup at ${order.kioskLocation || 'Central UniMall Hub'}.`;
+      message = `${order.studentName}, order ${order.id} is ironed, packaged, and ready for pickup at ${order.kioskLocation || 'UniMall Kiosk'}.`;
       type = 'success';
       break;
     case 'Collected':
       title = 'Order Collected Successfully ✨';
-      message = `Order ${order.id} was picked up. Thank you for using LPU LaundryTrack!`;
+      message = `${order.studentName}, order ${order.id} was picked up. Thank you for using LPU LaundryTrack!`;
       type = 'success';
       break;
     default:

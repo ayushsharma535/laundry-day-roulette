@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useOrders } from '../../context/OrderContext';
 import type { ClothingCategory } from '../../types/order';
+import type { StudentProfile } from '../../types/user';
+import { DEMO_STAFF, DEMO_STUDENTS } from '../../types/user';
 import { useNavigate } from 'react-router-dom';
 import {
   PlusCircle,
@@ -14,6 +16,8 @@ const CATEGORIES: ClothingCategory[] = [
   'Other'
 ];
 
+const KIOSK_OPTIONS = [...new Set(DEMO_STUDENTS.map(student => student.assignedKiosk))];
+
 export const RegisterOrderPage: React.FC = () => {
   const { placeOrder } = useOrders();
   const navigate = useNavigate();
@@ -22,11 +26,11 @@ export const RegisterOrderPage: React.FC = () => {
   const [studentName, setStudentName] = useState('');
   const [regNo, setRegNo] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  const [hostelBlock, setHostelBlock] = useState('BH-1');
+  const [hostelBlock, setHostelBlock] = useState('');
   const [itemCount, setItemCount] = useState('10');
   const [category, setCategory] = useState<ClothingCategory>('Regular clothes');
   const [specialInstructions, setSpecialInstructions] = useState('');
-  const [kioskLocation, setKioskLocation] = useState('Central UniMall Hub');
+  const [kioskLocation, setKioskLocation] = useState(DEMO_STAFF.assignedKiosk);
 
   // Success state for walk-in confirmation
   const [createdOrderId, setCreatedOrderId] = useState<string | null>(null);
@@ -34,10 +38,11 @@ export const RegisterOrderPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Quick fill student buttons for easy demo testing
-  const handleQuickFill = (name: string, reg: string, hostel: string) => {
-    setStudentName(name);
-    setRegNo(reg);
-    setHostelBlock(hostel);
+  const handleQuickFill = (profile: StudentProfile) => {
+    setStudentName(profile.name);
+    setRegNo(profile.regNo);
+    setHostelBlock(`${profile.hostelBlock}, Room ${profile.roomNumber}`);
+    setKioskLocation(profile.assignedKiosk);
   };
 
   const validate = () => {
@@ -81,8 +86,10 @@ export const RegisterOrderPage: React.FC = () => {
     setStudentName('');
     setRegNo('');
     setContactNumber('');
+    setHostelBlock('');
     setItemCount('10');
     setSpecialInstructions('');
+    setKioskLocation(DEMO_STAFF.assignedKiosk);
   };
 
   return (
@@ -134,21 +141,18 @@ export const RegisterOrderPage: React.FC = () => {
           {/* Quick Demo Pre-fill Bar */}
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-xs flex items-center justify-between gap-2">
             <span className="text-slate-500 font-medium">Quick Fill Student:</span>
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={() => handleQuickFill('Aman Verma', '12209384', 'BH-2, Room 412')}
-                className="px-2.5 py-1 bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-800 border border-slate-200 rounded-lg transition-colors font-medium text-[11px]"
-              >
-                + Aman Verma
-              </button>
-              <button
-                type="button"
-                onClick={() => handleQuickFill('Simran Kaur', '12108719', 'GH-1, Room 102')}
-                className="px-2.5 py-1 bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-800 border border-slate-200 rounded-lg transition-colors font-medium text-[11px]"
-              >
-                + Simran Kaur
-              </button>
+            <div className="flex flex-wrap items-center justify-end gap-1.5">
+              {DEMO_STUDENTS.map(profile => (
+                <button
+                  key={profile.regNo}
+                  type="button"
+                  onClick={() => handleQuickFill(profile)}
+                  title={`Fill ${profile.name}`}
+                  className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 transition-colors hover:bg-teal-50 hover:text-teal-800"
+                >
+                  + {profile.name.split(' ')[0]}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -167,7 +171,7 @@ export const RegisterOrderPage: React.FC = () => {
                   type="text"
                   value={studentName}
                   onChange={e => setStudentName(e.target.value)}
-                  placeholder="e.g. Aman Verma"
+                  placeholder="e.g. Ayush Dilip Sharma"
                   className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                 />
                 {errors.studentName && (
@@ -183,7 +187,7 @@ export const RegisterOrderPage: React.FC = () => {
                   type="text"
                   value={regNo}
                   onChange={e => setRegNo(e.target.value)}
-                  placeholder="e.g. 12209384"
+                  placeholder="e.g. 12505135"
                   className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 font-mono"
                 />
                 {errors.regNo && (
@@ -199,7 +203,7 @@ export const RegisterOrderPage: React.FC = () => {
                   type="text"
                   value={hostelBlock}
                   onChange={e => setHostelBlock(e.target.value)}
-                  placeholder="e.g. BH-2, Room 412"
+                  placeholder="e.g. BS-11, Room B-226"
                   className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                 />
               </div>
@@ -267,9 +271,11 @@ export const RegisterOrderPage: React.FC = () => {
                   onChange={e => setKioskLocation(e.target.value)}
                   className="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
                 >
-                  <option value="Central UniMall Hub">Central UniMall Hub</option>
-                  <option value="Boys Hostel Kiosk (BH-2)">Boys Hostel Kiosk (BH-2)</option>
-                  <option value="Girls Hostel Kiosk (GH-2)">Girls Hostel Kiosk (GH-2)</option>
+                  {[...KIOSK_OPTIONS, DEMO_STAFF.assignedKiosk]
+                    .filter((location, index, locations) => locations.indexOf(location) === index)
+                    .map(location => (
+                      <option key={location} value={location}>{location}</option>
+                    ))}
                 </select>
               </div>
 

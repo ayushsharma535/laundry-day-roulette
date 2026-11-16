@@ -194,7 +194,7 @@ export const TrackOrderPage: React.FC = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Kiosk Counter:</span>
-                  <span className="text-slate-700">{order.kioskLocation || 'Central UniMall Hub'}</span>
+                  <span className="text-slate-700">{order.kioskLocation || 'UniMall Kiosk'}</span>
                 </div>
               </div>
 

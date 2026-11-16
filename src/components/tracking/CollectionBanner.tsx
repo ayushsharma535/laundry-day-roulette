@@ -44,7 +44,7 @@ export const CollectionBanner: React.FC<CollectionBannerProps> = ({ order }) => 
             <div className="min-w-0">
               <p className="text-xs text-slate-500 font-medium">Pickup Desk</p>
               <p className="text-sm font-semibold text-slate-800 truncate mt-0.5">
-                {order.kioskLocation || 'Central UniMall Hub (Counter #2)'}
+                {order.kioskLocation || 'UniMall Kiosk'}
               </p>
             </div>
           </div>

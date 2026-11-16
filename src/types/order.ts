@@ -12,9 +12,9 @@ export interface OrderStatusHistoryItem {
 export interface Order {
   id: string; // e.g. "LT-2026-0001"
   studentName: string;
-  regNo: string; // e.g. "12209384"
+  regNo: string; // e.g. "12505135"
   contactNumber?: string;
-  hostelBlock?: string; // e.g. "BH-2, Room 412" or "GH-1"
+  hostelBlock?: string; // e.g. "BS-11, Room B-226" or "GH-4, Room C-412"
   itemCount: number;
   category: ClothingCategory;
   specialInstructions?: string;
@@ -22,7 +22,7 @@ export interface Order {
   submissionDate: string; // ISO string
   lastUpdated: string; // ISO string
   statusHistory: OrderStatusHistoryItem[];
-  kioskLocation?: string; // e.g. "Central UniMall Kiosk" or "BH-2 Laundry Room"
+  kioskLocation?: string; // e.g. "BH-11 / UniMall Kiosk" or "GH-4 Laundry Desk"
 }
 
 export const ORDER_STATUS_SEQUENCE: OrderStatus[] = [

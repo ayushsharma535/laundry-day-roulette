@@ -19,7 +19,7 @@ export const StudentLayout: React.FC = () => {
   }, [role, loginAs, navigate]);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="min-h-screen bg-[#f5f7f4] flex">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 

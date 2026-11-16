@@ -117,7 +117,7 @@ export const OrderConfirmationPage: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <span className="text-slate-500">Drop-off Kiosk:</span>
-            <span className="text-slate-800">{order.kioskLocation || 'Central UniMall Hub'}</span>
+            <span className="text-slate-800">{order.kioskLocation || 'UniMall Kiosk'}</span>
           </div>
           <div className="flex justify-between items-center pt-1">
             <span className="text-slate-500">Initial Status:</span>

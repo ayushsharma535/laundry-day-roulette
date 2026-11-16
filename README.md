@@ -29,7 +29,8 @@
 - **Settings & Demo Data Reset**: 1-click reset button to restore default 10 sample orders for testing and evaluations.
 
 ### 🔄 Dual-Portal Quick Switcher
-- Persistent top-bar switcher and modal allowing seamless 1-click toggling between Student persona (**Aman Verma, BH-2**) and Staff persona (**Rajesh Kumar, Central Kiosk**).
+- Persistent top-bar switcher and modal allowing seamless 1-click toggling between the primary student persona (**Ayush Dilip Sharma, 12505135, BS-11 Room B-226**) and staff persona (**Rajesh Sharma, 35134, UniMall Central Laundry Kiosk**).
+- The 10 resettable sample orders cover all six team-member hostellers, each at their assigned campus drop-off kiosk. Ayush’s dashboard opens with Washing, Ready, and Collected orders plus a ready-for-pickup notification.
 
 ---
 
@@ -70,15 +71,15 @@ npm test
 
 ## 📋 Evaluation Scenario (Step-by-Step)
 
-1. Open the app (`/`) and click **Enter Student Portal**.
-2. Click **Place New Request** and submit a request (e.g., 8 items, Regular clothes).
+1. Open the app (`/`) and open the Student Portal for **Ayush Dilip Sharma (12505135, BS-11, Room B-226)**.
+2. Click **Place Laundry Request** and submit a request (e.g., 8 items, Regular clothes) for the assigned **BH-11 / UniMall Kiosk**.
 3. Receive unique Order ID (e.g., `LT-2026-0011`) on the Confirmation Screen.
-4. Click **Switch to Staff** in the top navigation bar.
+4. Click **Switch to Staff** in the top navigation bar (staff persona: **Rajesh Sharma, 35134**).
 5. In **Manage Laundry Orders**, find `LT-2026-0011`.
 6. Click **Receive** (advances status from `Submitted` to `Received`).
 7. Click **Wash** (advances status from `Received` to `Washing`).
 8. Click **Mark Ready** (advances status from `Washing` to `Ready`).
-9. Click **Switch to Student** in the top navigation bar.
+9. Click **Switch to Student** in the top navigation bar to return to Ayush’s student dashboard.
 10. Navigate to **Track My Laundry** and view `LT-2026-0011`.
 11. Observe the glowing active **Ready** stage, collection banner, and in-app notification.
 12. Switch back to Staff and click **Mark Collected**.

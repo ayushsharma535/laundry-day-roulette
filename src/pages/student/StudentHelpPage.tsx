@@ -75,16 +75,16 @@ export const StudentHelpPage: React.FC = () => {
           <h3 className="text-sm font-bold text-slate-900">Campus Hubs</h3>
           <ul className="text-xs text-slate-600 space-y-2">
             <li className="py-1 border-b border-slate-100">
-              <span className="font-semibold text-slate-900 block">Central UniMall Hub</span>
-              <span className="text-slate-400">Bulk washes, steam pressing & delicate garments</span>
+              <span className="font-semibold text-slate-900 block">UniMall Kiosk</span>
+              <span className="text-slate-400">Campus-wide drop-off and central laundry service</span>
             </li>
             <li className="py-1 border-b border-slate-100">
-              <span className="font-semibold text-slate-900 block">Boys Hostel Desks</span>
-              <span className="text-slate-400">BH-1, BH-2, BH-3, and BH-4 ground floor kiosks</span>
+              <span className="font-semibold text-slate-900 block">Boys’ Hostel Desks</span>
+              <span className="text-slate-400">BH-11 / UniMall Kiosk, BH-11 Counter, and BH-1 Central Desk</span>
             </li>
             <li className="py-1">
               <span className="font-semibold text-slate-900 block">Girls Hostel Desks</span>
-              <span className="text-slate-400">GH-1, GH-2, GH-3, and GH-4 entry kiosks</span>
+              <span className="text-slate-400">GH-2 Counter and GH-4 Laundry Desk</span>
             </li>
           </ul>
         </div>
